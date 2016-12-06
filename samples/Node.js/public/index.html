@@ -50,7 +50,10 @@
           var r = new Flow({
             target: '/upload',
             chunkSize: 1024*1024,
-            testChunks: false
+            testChunks: false,
+            prioritizeFirstAndLastChunk: true,
+            simultaneousUploads: 4,
+            allowDuplicateUploads: true,
           });
           // Flow.js isn't supported, fall back on a different method
           if (!r.support) {

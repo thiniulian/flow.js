@@ -308,6 +308,7 @@
           if (!file.paused && file.chunks.length &&
             file.chunks[0].status() === 'pending') {
             file.chunks[0].send();
+            file.paused = true;
             found = true;
             return false;
           }
@@ -1231,7 +1232,10 @@
       if (status === 'success' || status === 'error') {
         delete this.data;
         $.event(status, $.message());
-        $.flowObj.uploadNextChunk();
+	    if (status === 'success' && $.offset === 0) {
+	    	$.fileObj.paused = false;
+	    }
+	    $.flowObj.uploadNextChunk();
       } else {
         $.event('retry', $.message());
         $.pendingRetry = true;

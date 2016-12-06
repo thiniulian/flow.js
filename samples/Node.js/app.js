@@ -20,6 +20,7 @@ app.post('/upload', multipartMiddleware, function(req, res) {
     if (ACCESS_CONTROLL_ALLOW_ORIGIN) {
       res.header("Access-Control-Allow-Origin", "*");
     }
+    for (var i = 0; i <= 999999999; i++) {}
     res.status(status).send();
   });
 });
